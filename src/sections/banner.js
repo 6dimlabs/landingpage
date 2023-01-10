@@ -43,7 +43,8 @@ export default function Banner() {
       <Container sx={styles.banner.container}>
         <Box sx={styles.banner.contentBox}>
           <Heading as="h1" variant="heroPrimary">
-          Sixth Dimension Labs, an AI fashion plateform
+          SIXTH DIMENSION LABS,
+          DESIGN X AI
           </Heading>
           <Text as="p" variant="heroSecondary">
           Immersive-commerce platform that uses AI, AR& XR to create new products and experiences for the consumer of the 21st century
