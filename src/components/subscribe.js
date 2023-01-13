@@ -51,7 +51,7 @@ export default function Subscribe() {
     setStatus((prevStatus) => ({ ...prevStatus, submitting: true }));
 
     // 3. Send a request to our API with the user's email address.
-    const res = await fetch('/', {
+    const res = await fetch('http://us21.api.mailchimp.com/3.0/lists/986ac0ecc8/members', {
       body: JSON.stringify({
         email: inputEl.current.value,
       }),
