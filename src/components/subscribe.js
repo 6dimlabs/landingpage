@@ -56,7 +56,8 @@ export default function Subscribe() {
         email: inputEl.current.value,
       }),
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json', 
+        'Authorization': 'Bearer ' + "c4523789b5815f6ac60dd03a00cef10b-us21",
       },
       method: 'POST',
     });
