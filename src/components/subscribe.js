@@ -57,7 +57,7 @@ export default function Subscribe() {
       }),
       headers: {
         'Content-Type': 'application/json', 
-        'Authorization': 'Bearer ' + "c4523789b5815f6ac60dd03a00cef10b-us21",
+        'Access-Control-Allow-Origin' : '*',
       },
       method: 'POST',
     });
