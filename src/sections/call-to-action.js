@@ -15,7 +15,7 @@ export default function CallToAction() {
             Do you have any question? Feel free to contact us
           </Heading>
           <Box sx={styles.btnWrapper}>
-            <Button variant="whiteButton" aria-label="Contact Us">
+            <Button  aria-label="Contact Us">
               CONTACT US NOW
             </Button>
           </Box>

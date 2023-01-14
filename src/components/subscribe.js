@@ -2,8 +2,20 @@
 import { useRef, useState } from 'react';
 import { jsx } from 'theme-ui';
 import { Flex, Button, Input } from 'theme-ui';
+import { useFormFields, useMailChimpForm } from "use-mailchimp-form";
+
 
 export default function Subscribe() {
+  const url = "https://6dlabs.us21.list-manage.com/subscribe/post?u=3984937f18a637434499cf40c&amp;id=986ac0ecc8&amp;f_id=00cbe3e1f0";
+  const { loading, error, success, message, handleSubmit } = useMailChimpForm(
+    url
+  );
+  const isSubscribed = (message=="Thank you for subscribing!") && verified;
+  const { fields, handleFieldChange } = useFormFields({
+    EMAIL: ""
+    
+  });
+
   // 1. Create a reference to the input so we can fetch/clear it's value.
   const inputEl = useRef(null);
   // 2. Hold a status in state to handle the response from our API.
@@ -46,6 +58,9 @@ export default function Subscribe() {
       });
     }
   };
+
+
+  
   const subscribe = async (e) => {
     e.preventDefault();
     setStatus((prevStatus) => ({ ...prevStatus, submitting: true }));
@@ -73,18 +88,13 @@ export default function Subscribe() {
   };
   return (
     <div className="subscribe__area">
-      <form onSubmit={subscribe}>
+      <form>
         <Flex sx={styles.subscribeForm}>
           <label htmlFor="email" sx={{ variant: 'styles.srOnly' }}>
             Email Address
           </label>
-          <Input
-            ref={inputEl}
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Enter your email"
-          />
+          <input id="EMAIL" autoFocus type="email" placeholder="Enter Your Email" value={fields.EMAIL} onChange={handleFieldChange} required/>
+
 
           <div>
             {status.info.error && (
@@ -94,18 +104,18 @@ export default function Subscribe() {
               <div className="success">{status.info.msg}</div>
             )}
           </div>
-          <Button
-            type="submit"
-            disabled={status.submitting}
-            variant="subscribeButton"
-          >
-            {!status.submitting
-              ? !status.submitted
-                ? 'Subscribe'
-                : 'Submitted'
-              : 'Submitting...'}
-          </Button>
+          <Button variant="subscribeButton" 
+                                          onClick={(event) => {
+                                          event.preventDefault();
+                                          handleSubmit(fields);   
+                                          }}>Subscribe</Button> 
+
         </Flex>
+        <p className="style">
+                                        {loading && "submitting"}
+                                        {error && message}
+                                        {success && message}
+                                      </p>
       </form>
     </div>
   );
